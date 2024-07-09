@@ -1,3 +1,31 @@
+# Installing Dirsearch
+The first thing we need to do is install dirsearch from GitHub. 
+
+The easiest way to do this is with git. So if it's not already installed on your system, do so with the following command in the terminal:
+
+$sudo apt-get update
+$sudo apt-get install git
+![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/fa7bf001-3757-4cc7-986f-9898f5a56c3c)
+
+Now we can use the git clone command to clone the directory where the tool is located:
+
+$git clone https://github.com/maurosoria/dirsearch
+$cd dirsearch/
+$python3 dirsearch.py      #run dirsearch
+![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/5ea41a82-ea53-4e6e-90db-d6db23a75574)
+git clone https://github.com/maurosoria/dirsearch.git --depth 1
+
+The last way to run dirsearch, which is my preferred method, is to create a symbolic link in the /bin directory. This will allow us to run the tool from anywhere, as opposed to only in the directory cloned from GitHub.
+$cd /bin/
+
+create a symbolic link to the tool using the ln -s command:
+$sudo ln -s ~/dirsearch/dirsearch.py dirsearch
+
+Here we are naming it dirsearch, so when we run dirsearch now in the terminal, the tool will be able to run from any directory. 
+![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/3affa48f-5008-429b-9ea1-0910fcfd2caf)
+
+
+
 # cybersec-labs
 # bolt
 Let's try: View Page Source, pay attention to p This website is... /p, add /bolt to URL and guess the user and pass (admin, password).
@@ -57,6 +85,7 @@ Vulnerable path. Let’s check: /composer.json where we can understand that our 
 
 Now exploit the vulnerable path using Burpsuite: < ?php system('cat /flag.txt')? >
 CTF{8c7795c5332da1491741a61fe780006a619273444bfe54aff555e28f83e3b123}
+
 # nodiff-backdoor
 After performing some recon using *dirsearch* on the targeted web application, we can find a *backup.zip* archive.
 
@@ -87,3 +116,21 @@ http://34.107.45.207:30148/?welldone=knockknock&shazam=id
 
 http://34.107.45.207:30148/?welldone=knockknock&shazam=cat flag.php
 CTF{87702788126237df9c4a915fea9441345dc6b3a0272b214b2c31e50a8f89c4b1}
+
+# schematics
+After a few attempts of web application reconnaissance using dirsearch -u , we obtain a register endpoint.
+choose register.php because it is successful link.
+register
+
+When we put “%” into the field, the list of all the products is showed. At this moment, we can conclude that the page with search functionalities implemented is vulnerable to SQLi injection. To proceed further with the attack, copy the cookie from the POST request obtained with Burp and use SQLmap on it. we use it for the command to have valid session
+![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/fba3f32b-93cc-47b5-a611-bdc69f05c6d9)
+CTF{1nformat1on_sch3ma_c4n_cont41n_us3ful_d4t4}
+
+
+# authorization
+try dirsearch and chek urls
+
+for /auth We are not allowed to use GET requests because we got some error, 
+so let’s try to use POST  requests.
+
+
